@@ -1,0 +1,415 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>ShopTechXs</title>
+
+        <link rel="stylesheet" type="text/css" href="">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
+    
+        <style>
+            
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            
+            }
+
+            /* start page styling*/
+            body{
+                overflow-x: hidden;
+            }
+            
+            .container{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                background-color: rgb(211, 150, 109);
+            }
+            
+            .header{
+                height: 50px;
+                background-color: #f2eee3;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                overflow: hidden;
+            }
+            
+            .header h1{
+                margin: 10px;
+                cursor: pointer;
+            }
+            
+            .header h1 a{
+                color: black;
+                text-decoration: none;
+            }
+            
+            ul{
+                display: flex;
+                flex-direction: row;
+            }
+            ul li{
+                border: 1px solid black;
+                margin: 0 5px;
+                font-size: 20px;
+                padding: 3px 0;
+                width: 90px;
+                display: flex;
+                justify-content: center;
+            }
+            ul li a{
+                text-decoration: none;
+                color: black;
+
+            }
+            
+            .h3{
+                display: flex;
+                justify-content: center;
+            }
+            
+            h3{
+                font-size: 25px;
+                background: #fff;
+            }
+            
+            .row{
+                margin: 10px;
+                display: grid;
+                grid-template-columns: auto auto auto auto;
+                gap: 15px;
+            }
+            
+            .column{
+                border: none;
+                border: 1px solid black;
+                border-radius: 5px;
+                padding: 20px;
+                transition: all 0.5s ease-in-out;
+                background: #fff;
+            }
+            
+            .column:hover{
+                overflow: hidden;
+                transform: scale(1.02);
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            }
+            
+            img{
+                width: 250px;
+                height:35%;
+            }
+            
+            .column a{
+                text-decoration: none;
+                color: black;
+            }
+            
+            .card{
+                display: flex;
+                flex-direction: column;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: none;
+            }
+            
+            .card p{
+                font-size: 18px;
+                background: #fff;
+            }
+            
+            .inner-container{
+                padding: 10px;
+            }
+            
+            .color-text{
+                color: rgb(232, 122, 9);
+            }
+            
+            #contact-bottom{
+                margin-top: 20px;
+                margin-bottom: 20px;
+                color: #444;
+            
+            }
+            #about-bottom{
+                margin-top: 20px;
+                margin-bottom: 20px;
+                color: #444;
+            
+            }
+            #main-footer{
+                height: 30px;
+                background-color: #f2eee3;
+                color: black;
+                display: flex;
+                justify-content: center;
+                align-items:center;
+                font-size: 20px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="container">
+        
+            <header class="header">
+                <h1 class="logo"><a href="{% url '' %}">ShopTechXs</a></h1>
+                <ul class="ul-anchor">
+                    <li><a href="{% url '' %}">Home</a></li>
+                    <li><a href="{% url 'products' %}">Products</a></li>
+                    <li><a href="{% url 'about' %}">About us</a></li>
+                    <li><a href="{% url 'contacts' %}">Contact us</a></li>
+                </ul>
+            </header>          
+            <h3 style="color: rgb(211, 150, 109); " class="h3"><b> COMPUTERS AND COMPUTER ACCESSORIES</b></h3>
+            <div class="row">
+                <div class="column column-1">
+                    <div class="control-width">
+                        <a href= {% url 'custdets' %}>
+                            <div class="card">
+                                <img src="https://rondamo.co.ke/photok/360859.jpg" alt="laptop" >
+                                <div class="inner-container">
+                                    <h3 id="product_name1">LenovoTinkPad X13</h3> 
+                                    <p>Gen 1, Core i7 10510U, 8GB, 512GB SSD, Windows 10 Pro, 13.3” FHD   </p> 
+                                    <p id="price1">172800</p>
+                                    
+                                    <script>
+                                        
+                                        var container1 = document.querySelector('.column-1');
+                                        
+                                        container1.addEventListener('click', function(){
+                                            var obj ={
+                                                product_name : document.getElementById("product_name1").innerText,
+                                                price : document.getElementById("price1").innerText
+                                            };
+                                            localStorage.clear();
+                                            myObject = JSON.stringify(obj);
+                                            localStorage.setItem('myObject', myObject);
+                                        });
+    
+                                </script>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="column column-2">
+                    <div class="control-width">
+                        <a href="{% url 'custdets' %}">
+                        <div class="card">
+                            <img src="https://rondamo.co.ke/photok/421197.png" alt="laptop" >
+                            <div class="inner-container">
+                                <h3 id="product_name2">Dell XPS9250-1827 </h3> 
+                                <p> Touchscreen Intel Core M 6Y54 1.1 GHz, 12.5inches Screen, Storage: 128 GB, RAM: 8 GB</p>                       </p> 
+                                <p id="price2">47000</p>
+                                <script>
+    
+                                    var container2 = document.querySelector('.column-2');
+                                    
+                                    container2.addEventListener('click', function(){
+                                        var obj ={ 
+                                            product_name : document.getElementById("product_name2").innerText,
+                                            price : document.getElementById("price2").innerText
+                                        };
+                                        localStorage.clear();
+                                        myObject = JSON.stringify(obj);
+                                        localStorage.setItem('myObject', myObject);
+                                    });
+    
+                                </script>
+                            </div> 
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="column column-3">
+                    <div class="control-width">
+                        <a href="{% url 'custdets' %}">
+                        <div class="card">
+                            <img src="https://rondamo.co.ke/photok/158580.png" alt="laptop" >
+                            <div class="inner-container">
+                                <h3 id="product_name3">HP ProBook 650 G4</h3> 
+                                <p> Full HD Intel Core i5-8250U 1.6GHz Processor, 8 GB RAM, 500 GB SSD (Silver) 15.6 Inch</p> 
+                                <p id="price3">52000</p>
+                                <script>
+    
+                                    var container3 = document.querySelector('.column-3');
+                                    
+                                    container3.addEventListener('click', function(){
+                                        var obj ={ 
+                                            product_name : document.getElementById("product_name3").innerText,
+                                            price : document.getElementById("price3").innerText
+                                        };
+                                        localStorage.clear();
+                                        myObject = JSON.stringify(obj);
+                                        localStorage.setItem('myObject', myObject);
+                                    });
+                                    
+                                </script>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="column column-4">
+                    <div class="control-width">
+                        <a href="{% url 'custdets' %}">
+                        <div class="card">
+                            <img src="https://i0.wp.com/www.bovic.co.ke/wp-content/uploads/2021/09/lenovo-laptop-yoga-c940-www.bovic_.co_.ke_.png?fit=600%2C600&ssl=1" alt="laptop">
+                            <div class="inner-container">
+                                <h3 id="product_name4">Lenovo Yoga C940</h3> 
+                                <p> 14 FHD Touch - 10th Gen i7-1065G7-12GB - 512GB SSD - Gray</p> 
+                                <p id="price4">152000</p>
+                                <script>
+    
+                                    var container4 = document.querySelector('.column-4');
+    
+                                    container4.addEventListener('click', function(){
+                                        var obj ={ 
+                                            product_name : document.getElementById("product_name4").innerText,
+                                            price : document.getElementById("price4").innerText
+                                        };
+                                        localStorage.clear();
+                                        myObject = JSON.stringify(obj);
+                                        localStorage.setItem('myObject', myObject);
+                                    });
+    
+                                </script>    
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="column column-5">
+                    <div class="control-width">
+                        <a href="{% url 'custdets' %}">
+                        <div class="card">
+                            <img src="https://fgee.co.ke/wp-content/uploads/2022/06/lenovo-v15-i3.jpg" alt="laptop">
+                            <div class="inner-container">
+                                <h3 id="product_name5">Lenovo V15</h3> 
+                                <p>  Core i5 10210U, 4GB, 1TB, 15.6″ FHD</p> 
+                                <p id="price5">61150</p>
+                                <script>
+    
+                                    var container5 = document.querySelector('.column-5');
+                                   
+                                    container5.addEventListener('click', function(){
+                                        var obj ={ 
+                                            product_name : document.getElementById("product_name5").innerText,
+                                            price : document.getElementById("price5").innerText
+                                        };
+                                        localStorage.clear();
+                                        myObject = JSON.stringify(obj);
+                                        localStorage.setItem('myObject', myObject);
+                                    });
+                                </script>
+                            </div>      
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="column column-6">
+                    <div class="control-width">
+                    <a href="{% url 'custdets' %}">
+                        <div class="card">
+                            <img src="https://rondamo.co.ke/photok/682893.png" alt="laptop">
+                            <div class="inner-container">
+                                <h3 id="product_name6">Asus VivoBook 15 X513EA-BQ1384T</h3> 
+                                <p> Core I5 11th Gen, 8GB, 256GB SSD, Win 10 Home, 15.6″ FHD</p> 
+                                <p id="price6">70000</p>
+                                <script>
+                                    
+                                    var container6 = document.querySelector('.column-6');
+                                    
+                                    container6.addEventListener('click', function(){
+                                        var obj ={ 
+                                            product_name : document.getElementById("product_name6").innerText,
+                                            price : document.getElementById("price6").innerText
+                                        };
+                                        localStorage.clear();
+                                        myObject = JSON.stringify(obj);
+                                        localStorage.setItem('myObject', myObject);
+                                    });
+                                
+                            </script>
+    
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="column column-7">
+                    <div class="control-width">
+                    <a href="{% url 'custdets' %}">
+                        <div class="card">
+                        <img src="https://rondamo.co.ke/photok/824120.jpg" alt="laptop">
+                        <div class="inner-container">
+                                <h3 id="product_name7">Toshiba Dynabook B45/G</h3> 
+                                <p>  intel Corei5 6th generation ,15.6 Inches RAM 4GB RAM,500 GB Hard Drive
+                                </p> 
+                                <p id="price7">37000</p>
+                                <script>
+                                
+                                    var container7 = document.querySelector('.column-7');
+                                   
+                                    container7.addEventListener('click', function(){
+                                        var obj ={ 
+                                            product_name : document.getElementById("product_name7").innerText,
+                                            price : document.getElementById("price7").innerText
+                                        };
+                                        localStorage.clear();
+                                        myObject = JSON.stringify(obj);
+                                        localStorage.setItem('myObject', myObject);
+                                    });
+                                    
+                                </script>
+                            
+                            </div>
+                            </a>    
+                        </div>    
+                    </div>      
+                </div>
+                <div class="column column-8"> 
+                    <div class="control-width">                
+                        <a href="{% url 'custdets' %}">               
+                            <div class="card">                    
+                            <img src="https://www.tdk.co.ke/wp-content/uploads/2021/06/csm_HP_Spectre_x360-Price-in-kenya.jpg" alt="laptop">
+                            <div class="inner-container">
+                                <h3 id="product_name8">Hp spectre x360</h3> 
+                                <p> intel corei7 16gb RAM 512GB SSD harddisk</p> 
+                                <p id="price8">170000</p>
+                                <script>
+                                    var container8 = document.querySelector('.column-8');
+    
+                                    container8.addEventListener('click', function(){
+                                        var obj ={ 
+                                            product_name : document.getElementById("product_name8").innerText,
+                                            price : document.getElementById("price8").innerText
+                                        };
+                                        localStorage.clear();
+                                        myObject = JSON.stringify(obj);
+                                        localStorage.setItem('myObject', myObject);
+                                    });
+                                
+                                </script>
+                                            
+                            </div>
+                            </a>    
+                        </div>       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,234 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+        }
+        
+        body{
+            background: white;
+            overflow: hidden;
+        }
+        
+        .container{
+            width: 100%;
+            background: rgb(211, 150, 109);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .detail{
+            position: relative;
+            width: 375px;
+        }
+        
+        input, label{
+            font-size: 18px;
+            margin: 0 0 0 10px;
+        }
+        
+        input{
+            position: relative;
+            padding:1px 5px;
+            cursor: text;
+            font-size: 15px;
+        }
+        
+        .personal-details, .product-details{
+            padding: 20px;
+            display: grid;
+            grid-template-columns: auto auto;
+            row-gap: 10px;
+            margin: 10px 10px 20px 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            background: #f2eee3;
+        }
+        
+        .personal-details{
+            margin-bottom: 15px;
+        }
+        
+        .product-details{
+            margin-top: 15px;
+        }
+        
+        h4{
+            padding-left: 10px;
+            font-size: 18px;
+            font-family: 'Lora' , cursive;
+        }
+
+        .header{
+            position: absolute;
+            top: 0;
+            height: 50px;
+            background-color: #f2eee3;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .header h1{
+            margin: 10px;
+            cursor: pointer;
+        }
+        
+        .header h1 a{
+            color: black;
+            text-decoration: none;
+        }
+        
+        ul{
+            display: flex;
+            flex-direction: row;
+            margin-right: 10px;
+        }
+        ul li{
+            border: 1px solid black;
+            margin: 0 5px;
+            font-size: 20px;
+            padding: 3px 0;
+            width: 90px;
+            display: flex;
+            justify-content: center;
+        }
+        ul li a{
+            text-decoration: none;
+            color: black;
+        }
+
+        #main-footer{
+            height: 30px;
+            background: #f2eee3;
+            color: black;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            font-size: 20px;
+        }
+        button{
+            display: flex;
+            margin-left: 680px;
+            font-size: 15px;
+            padding: 10px 20px;
+            border: none;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+    </style>
+
+    <title>Recipient details</title>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="logo"><a href="{% url '' %}">ShopTechXs</a></h1>
+            <ul class="ul-anchor">
+                <li><a href="{% url '' %}">Home</a></li>
+                <li><a href="{% url 'products' %}">Products</a></li>
+                <li><a href="{% url 'about' %}">About us</a></li>
+                <li><a href="{% url 'contacts' %}">Contact us</a></li>
+            </ul>
+        </header>
+        <form class="form" method="post">
+            <div class="form">
+                <h4>Personal Details</h4>
+                {% csrf_token %}
+                <div class="personal-details">
+                    <div class="detail">
+                        <label style="margin-right: 30px;">First Name</label>
+                        {{ form.firstName }}
+                    </div>
+                    <div class="detail">
+                        <label style="margin-right: 12.5px;">Second Name</label>
+                        {{ form.secondName }}
+                    </div>
+                    <div class="detail">
+                        <label>Email Address</label>
+                        {{ form.email }}
+                    </div>
+                    <div class="detail">
+                        <label>Phone Number</label>
+                        {{ form.phone }}
+                    </div>
+                    <div class="detail">
+                        <label>Postal Address</label>
+                        {{ form.address }}
+                    </div>
+                </div>
+                
+                <h4>Product Details</h4>
+                <div class="product-details">
+                    <div class="detail">
+                        <label>Product Name</label>
+                        {{ form.productName }}
+                    </div>
+                    <div class="detail">
+                        <label>Quantity</label>
+                        {{ form.quantity }}
+                    </div>
+                    <div class="detail">
+                        <label>Price in Ksh</label>
+                        <input type="text" class="price">
+                    </div>
+                    <div class="detail">
+                        <label>Total</label>
+                        {{ form.price }}
+                    </div>
+                </div>
+                
+                <button type="submit" name="save">SUBMIT</button>
+            </div>
+        </form>
+        <footer id="main-footer" >
+            <p>ShopTechXs &copy 2022, All Rights Reserved</p>
+        </footer>
+    </div>
+    <script>
+        let newObj = localStorage.getItem('myObject')
+        let obj = JSON.parse(newObj);
+        console.log(obj.price);
+        document.querySelector('.product-name').value = obj.product_name;
+        document.querySelector('.price').value = obj.price;
+
+        let quantityEl = document.querySelector('.quantity');
+        quantityEl.value = 0;
+        if (quantityEl.value < 0 ){
+            quantityEl.value = 0
+        }
+        quantityEl.addEventListener('click', function(){
+            let total = document.querySelector('.total');
+            total.value = quantityEl.value * obj.price;
+            //location.reload();
+        });
+
+    </script>
+
+</body>
+</html>
+
+<!-- Connecting the prices and product name when we integrate the front end and the backend -->
